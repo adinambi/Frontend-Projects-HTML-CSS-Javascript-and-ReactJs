@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>I am a headline made with HTML</h1>
+<br />
+<p id="useless-paragraph">Useless paragraph.</p>
+<br />
+<button onclick="toggleVisibility()">Toggle Button</button>
+</body>
+<script>
+function toggleVisibility() {
+       // Get the paragraph element by its ID
+    const paragraph = document.getElementById('useless-paragraph');
+    
+    // Check the current display style of the paragraph
+    if (paragraph.style.display === 'none') {
+        // If currently hidden, make it visible
+        paragraph.style.display = 'block';
+    } else {
+        // If currently visible or not set, hide it
+        paragraph.style.display = 'none';
+    }
+}
+</script>
+</html>
+

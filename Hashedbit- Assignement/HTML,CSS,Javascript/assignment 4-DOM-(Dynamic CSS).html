@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class='text-here' id='text-container'>This is some example text</div>
+
+
+<input type="text" id="colorbox">
+
+<button id="colorchange">Change Colour</button>
+
+<br><br>
+
+<input type="range" id="fontsize" min="10" max="100" value="55">
+<br><br>
+
+
+<button id="italic" class="stylebt">Italics</button>
+<button id="underline" class="stylebt">Underline</button>
+<button id="bold" class="stylebt">Bold</button>
+
+<br><br>
+
+
+<select id="list">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+
+
+<br><br>
+
+<button id="getstyle">Get CSS</button>
+
+<br><br>
+<p id="css-props"></p>
+
+</body>
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+    // Get references to key elements
+    const textContainer = document.getElementById('text-container');
+    const colorBox = document.getElementById('colorbox');
+    const colorChangeBtn = document.getElementById('colorchange');
+    const fontSizeSlider = document.getElementById('fontsize');
+    const italicBtn = document.getElementById('italic');
+    const underlineBtn = document.getElementById('underline');
+    const boldBtn = document.getElementById('bold');
+    const fontList = document.getElementById('list');
+    const getStyleBtn = document.getElementById('getstyle');
+    const cssPropsDisplay = document.getElementById('css-props');
+
+    // Color Change Functionality
+    colorChangeBtn.addEventListener('click', () => {
+        textContainer.style.color = colorBox.value;
+    });
+
+    // Font Size Slider Functionality
+    fontSizeSlider.addEventListener('input', () => {
+        textContainer.style.fontSize = `${fontSizeSlider.value}px`;
+    });
+
+    // Style Toggle Buttons
+    const styleToggles = {
+        'italic': {
+            property: 'fontStyle',
+            activeValue: 'italic',
+            defaultValue: 'normal'
+        },
+        'underline': {
+            property: 'textDecoration',
+            activeValue: 'underline',
+            defaultValue: 'none'
+        },
+        'bold': {
+            property: 'fontWeight',
+            activeValue: 'bold',
+            defaultValue: 'normal'
+        }
+    };
+
+    // Apply style toggle for italic, underline, and bold
+    ['italic', 'underline', 'bold'].forEach(style => {
+        const btn = document.getElementById(style);
+        btn.addEventListener('click', () => {
+            const config = styleToggles[style];
+            const currentValue = textContainer.style[config.property];
+            
+            textContainer.style[config.property] = 
+                currentValue === config.activeValue ? 
+                config.defaultValue : config.activeValue;
+        });
+    });
+
+    // Font Family Dropdown
+    fontList.addEventListener('change', () => {
+        textContainer.style.fontFamily = fontList.value;
+    });
+
+    // Get CSS Properties Button
+    getStyleBtn.addEventListener('click', () => {
+        const computedStyle = window.getComputedStyle(textContainer);
+        const cssProps = [
+            `color: ${computedStyle.color}`,
+            `font-size: ${computedStyle.fontSize}`,
+            `font-family: ${computedStyle.fontFamily}`,
+            `font-style: ${computedStyle.fontStyle}`,
+            `text-decoration: ${computedStyle.textDecoration}`,
+            `font-weight: ${computedStyle.fontWeight}`
+        ].join('; ');
+
+        cssPropsDisplay.textContent = cssProps;
+    });
+});
+</script>
+</html>

@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Programming Exercise Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .menu {
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #output {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-top: 20px;
+            min-height: 100px;
+            background-color: #f9f9f9;
+        }
+        .input-section {
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <h2>Programming Exercise Menu</h2>
+            <button onclick="showEvenNumbers()">1. Display Even Numbers</button>
+            <button onclick="showCalculatorInputs()">2. Calculator</button>
+            <button onclick="showTaxInputs()">3. Calculate Tax</button>
+            <button onclick="showDigitProductInputs()">4. Digit Product Sum</button>
+        </div>
+
+        <div id="calculatorInputs" class="input-section">
+            <h3>Calculator</h3>
+            <input type="number" id="num1" placeholder="First Number">
+            <input type="number" id="num2" placeholder="Second Number">
+            <select id="operation">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">×</option>
+                <option value="/">/</option>
+            </select>
+            <button onclick="calculate()">Calculate</button>
+        </div>
+
+        <div id="taxInputs" class="input-section">
+            <h3>Tax Calculator</h3>
+            <input type="number" id="salary" placeholder="Enter Salary">
+            <button onclick="calculateTax()">Calculate Tax</button>
+        </div>
+
+        <div id="digitProductInputs" class="input-section">
+            <h3>Digit Product Sum</h3>
+            <input type="number" id="n1" placeholder="First Number">
+            <input type="number" id="n2" placeholder="Second Number">
+            <button onclick="calculateDigitProduct()">Calculate</button>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function showOutput(text) {
+            document.getElementById('output').innerHTML = text;
+        }
+
+        function hideAllInputs() {
+            document.querySelectorAll('.input-section').forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+
+        function showEvenNumbers() {
+            hideAllInputs();
+            let output = "Even numbers from 1 to 100:<br>";
+            for (let i = 2; i <= 100; i += 2) {
+                output += i + " ";
+            }
+            showOutput(output);
+        }
+
+        function showCalculatorInputs() {
+            hideAllInputs();
+            document.getElementById('calculatorInputs').style.display = 'block';
+        }
+
+        function showTaxInputs() {
+            hideAllInputs();
+            document.getElementById('taxInputs').style.display = 'block';
+        }
+
+        function showDigitProductInputs() {
+            hideAllInputs();
+            document.getElementById('digitProductInputs').style.display = 'block';
+        }
+
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            
+            let result;
+            switch(operation) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+                    break;
+            }
+            showOutput(`Result: ${num1} ${operation} ${num2} = ${result}`);
+        }
+
+        function calculateTax() {
+            const salary = parseFloat(document.getElementById('salary').value);
+            let taxAmount = 0;
+            let taxRate = "0%";
+            
+            if (salary > 1500000) {
+                taxAmount = salary * 0.30;
+                taxRate = "30%";
+            } else if (salary > 1000000) {
+                taxAmount = salary * 0.20;
+                taxRate = "20%";
+            } else if (salary > 500000) {
+                taxAmount = salary * 0.10;
+                taxRate = "10%";
+            }
+            
+            showOutput(`
+                Salary: ₹${salary}<br>
+                Tax Rate: ${taxRate}<br>
+                Tax Amount: ₹${taxAmount.toFixed(2)}
+            `);
+        }
+
+        function calculateDigitProduct() {
+            const n1 = document.getElementById('n1').value;
+            const n2 = document.getElementById('n2').value;
+            
+            let str1 = n1.toString();
+            let str2 = n2.toString();
+            
+            const maxLength = Math.max(str1.length, str2.length);
+            str1 = str1.padStart(maxLength, '0');
+            str2 = str2.padStart(maxLength, '0');
+            
+            let sum = 0;
+            let calculation = "";
+            
+            for(let i = 0; i < maxLength; i++) {
+                const product = parseInt(str1[i]) * parseInt(str2[i]);
+                sum += product;
+                calculation += `(${str1[i]}×${str2[i]})`;
+                if (i < maxLength - 1) calculation += " + ";
+            }
+            
+            showOutput(`
+                Numbers: ${n1}, ${n2}<br>
+                Calculation: ${calculation} = ${sum}
+            `);
+        }
+    </script>
+</body>
+</html>

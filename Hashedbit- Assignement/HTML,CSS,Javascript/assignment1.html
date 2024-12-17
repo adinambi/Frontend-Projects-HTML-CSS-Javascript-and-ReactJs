@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <!-- Updated Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #ba5959;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;  /* Increased spacing between icons */
+            font-size: 1.5rem;    /* Increased icon size */
+        }
+
+        .social-links a:hover {
+            color: #1877f2;  /* Facebook blue color */
+            transition: color 0.3s ease;
+        }
+
+        .social-links .fa-facebook { color: white; }
+        .social-links .fa-facebook:hover { color: #1877f2; }  /* Facebook blue */
+        .social-links .fa-twitter:hover { color: #1da1f2; }   /* Twitter blue */
+        .social-links .fa-linkedin:hover { color: #0077b5; }  /* LinkedIn blue */
+
+        .menubar {
+            background: #5b3737;
+            padding: 1rem;
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .menubar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 200px);
+        }
+
+        .sidebar {
+            background: #f4f4f4;
+            padding: 1rem;
+            width: 250px;
+        }
+        .sidebar-button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: #ffffff;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: left;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .align-h3-title
+        {
+            text-align: center;
+        }
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .box-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin: 1rem 0;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .box {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><img src="C:\Users\Admin\Pictures\Screenshots\Screenshot 2024-12-02 153840.png" alt="logo" width="50" height="50"></div>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </header>
+
+    <nav class="menubar">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Contents</h2><br>
+        
+                <button class="sidebar-button">Assignment</button><br>
+                <button class="sidebar-button">Test</button><br>
+                <button class="sidebar-button">Class</button><br>
+                <button class="sidebar-button">Q&A</button><br>
+            
+        </aside>
+
+        <main class="main-content">
+            <div class="box-container">
+                <div class="box">
+                    <h3 class="align-h3-title">HTML & CSS</h3>
+                    <img src="C:\Users\Admin\Pictures\Screenshots\Screenshot 2024-12-02 160637.png" alt="Box 1">
+                    <p><b>HTML</b> is a markup language used to create static web pages and web applications.<br><b>CSS</b> is a style sheet language responsible for the presentation of documents written in a markup language.</p>
+                </div>
+                <div class="box">
+                    <h3 class="align-h3-title">Javascript</h3>
+                    <img src="C:\Users\Admin\Pictures\Screenshots\Screenshot 2024-12-02 161110.png" alt="Box 2">
+                    <p><b>JavaScript</b> is a scripting language that enables you to create dynamically updating content, control multimedia, animate images, and pretty much everything else.</p>
+                </div>
+                <div class="box">
+                    <h3 class="align-h3-title">ReactJs</h3>
+                    <img src="C:\Users\Admin\Pictures\Screenshots\Screenshot 2024-12-02 161137.png" alt="Box 3">
+                    <p><b>React.js</b> is a free, open-source JavaScript library that helps build interactive user interfaces for websites and mobile apps.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Your Company. All rights reserved.</p><br>
+        <p>Contact for queries||<u>Contact No.</u>+91-8693893261</p>
+    </footer>
+</body>
+</html>

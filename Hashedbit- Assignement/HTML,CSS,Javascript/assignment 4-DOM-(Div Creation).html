@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div Creation</title>
+</head>
+<body>
+    <div id="container">
+        
+    </div>
+    <script>
+        //Write your code here
+function createDiv(width, height, text) {
+  // Create a new div element
+    const newDiv = document.createElement('div');
+    
+    // Set the text content of the div
+    newDiv.textContent = text;
+    
+    // Set the width and height of the div (adding 'px' to the values)
+    newDiv.style.width = width + 'px';
+    newDiv.style.height = height + 'px';
+    
+    // Find the container div and append the new div to it
+    const container = document.getElementById('container');
+    container.appendChild(newDiv);
+    
+}
+
+
+// Do not change this code
+Window.createDiv = createDiv;
+    </script>
+</body>
+</html>
